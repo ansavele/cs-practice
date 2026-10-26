@@ -28,7 +28,7 @@ def average_by_city(records: list[dict]) -> dict:
     count = {}
     for r in records:
         c = r['city']
-        total[c] = total.get(c, 0.0) + r['temp']
+        total[c] = total.get(c, 0.0) + r['temperature']
         count[c] = count.get(c, 0) + 1
     return {c: round(total[c] / count[c], 1) for c in total}
 
