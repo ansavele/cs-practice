@@ -3,13 +3,17 @@ def parse_record(line: str) -> dict:
     if len(parts) != 3:
         raise ValueError('Ожидалось 3 поля')
     city, temp_str, date = parts
-    if not city.strip() or not date.strip():
+    city = city.strip()
+    date = date.strip()
+    temp_str = temp_str.strip().replace(',', '.')
+    if not city or not date:
         raise ValueError('Город или дата пустые')
     try:
         temp = float(temp_str)
     except ValueError:
         raise ValueError('Температура не число')
-    return {'city': city.strip(), 'temperature': temp, 'date': date.strip()}
+    return {"city": city, "temperature": temp, "date": date}
+
 
 def read_valid(lines: list[str]) -> list[dict]:
     records = []
