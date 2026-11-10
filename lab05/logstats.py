@@ -3,7 +3,7 @@ def parse_event(line: str) -> dict:
     if not line:
         raise ValueError("Пустая строка")
 
-    parts = line.split(' ', 2)
+    parts = line.split(maxsplit=2)
 
     if len(parts) < 3:
         raise ValueError("Строка содержит меньше трех частей")
@@ -20,6 +20,9 @@ def parse_event(line: str) -> dict:
 def count_levels(lines) -> dict:
     counts = {}
     for line in lines:
+        if not line.strip():
+            continue
+
         try:
             event = parse_event(line)
             level = event["level"]
